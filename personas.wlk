@@ -19,7 +19,7 @@ object rosa {
 
 object juan {
     method leGusta(objeto){
-        return !objeto.material().esDeMaterialQueBrilla() || objeto.peso().between(1200, 1800)
+        return (!objeto.color().esDeColorFuerte() || objeto.peso().between(1200,1800))
     }    
 }
 

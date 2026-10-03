@@ -1,0 +1,125 @@
+import cosas.*
+import personas.*
+import bolichito.*
+
+describe "Tests del Bolichito, Personas y Cosas" {
+
+    method initialize() {
+        // Configuramos los objetos de estado variable para tener un escenario predecible
+        munieco.cambiarPeso(1000)
+        placa.cambiarPeso(1500)
+        placa.cambiarColor(verde) // Color fuerte
+        
+        // Estado inicial del bolichito: 
+        // Mostrador: remera (rojo, lino, 800g)
+        // Vidriera: pelota (pardo, cuero, 1300g)
+        bolichito.ponerEnMostrador(remera)
+        bolichito.ponerEnVidriera(pelota)
+    }
+
+    // ==========================================
+    // TESTS DE GUSTOS DE PERSONAS
+    // ==========================================
+
+    test "Rosa: Le gustan cosas de 2000 gramos o menos" {
+        assert.that(rosa.leGusta(remera))     // Pesa 800g
+        assert.that(rosa.leGusta(arito))      // Pesa 180g
+        assert.notThat(rosa.leGusta(biblioteca)) // Pesa 8000g
+    }
+
+    test "Estefanía: Le gustan los colores fuertes (rojo, verde, naranja)" {
+        assert.that(estefania.leGusta(remera))    // Rojo
+        assert.that(estefania.leGusta(banquito))  // Naranja
+        assert.notThat(estefania.leGusta(arito))  // Celeste (no fuerte)
+    }
+
+    test "Luisa: Le gustan los materiales que brillan (cobre, vidrio)" {
+        assert.that(luisa.leGusta(arito))   // Cobre
+        assert.that(luisa.leGusta(munieco)) // Vidrio
+        assert.notThat(luisa.leGusta(remera)) // Lino
+    }
+
+    test "Juan: Le gustan colores no fuertes O pesos entre 1200 y 1800" {
+        // Pelota: Pardo (no fuerte), 1300g (entra en rango). Cumple ambas.
+        assert.that(juan.leGusta(pelota)) 
+        
+        // Banquito: Naranja (fuerte), 1700g (entra en rango). Cumple la segunda condición.
+        assert.that(juan.leGusta(banquito))
+        
+        // Arito: Celeste (no fuerte), 180g (fuera de rango). Cumple la primera condición.
+        assert.that(juan.leGusta(arito))
+        
+        // Remera: Rojo (fuerte), 800g (fuera de rango). No cumple ninguna.
+        assert.notThat(juan.leGusta(remera))
+    }
+
+    // ==========================================
+    // TESTS DE MUTABILIDAD Y DELEGACIÓN
+    // ==========================================
+
+    test "Cajita: Su peso es dinámico y depende de lo que tiene adentro" {
+        cajita.guardarAdentro(arito) // Arito pesa 180
+        assert.equals(580, cajita.peso()) // 400 (base) + 180
+        
+        cajita.guardarAdentro(biblioteca) // Biblioteca pesa 8000
+        assert.equals(8400, cajita.peso()) // 400 (base) + 8000
+    }
+
+    // ==========================================
+    // TESTS DEL BOLICHITO
+    // ==========================================
+
+    test "Bolichito: Equilibrio (Mostrador > Vidriera)" {
+        // Actual: remera (800) en mostrador, pelota (1300) en vidriera. No está equilibrado.
+        assert.notThat(bolichito.estaEquilibrado())
+        
+        // Lo damos vuelta
+        bolichito.ponerEnMostrador(pelota)
+        bolichito.ponerEnVidriera(remera)
+        assert.that(bolichito.estaEquilibrado())
+    }
+
+    test "Bolichito: Monocromático" {
+        // Actual: rojo y pardo.
+        assert.notThat(bolichito.esMonocromatico())
+        
+        // Ponemos dos cosas celestes
+        bolichito.ponerEnMostrador(munieco)
+        bolichito.ponerEnVidriera(arito)
+        assert.that(bolichito.esMonocromatico())
+    }
+
+    test "Bolichito: Es Brillante" {
+        // Actual: lino y cuero.
+        assert.notThat(bolichito.esBrillante())
+        
+        // Ponemos dos cosas que brillan (vidrio y cobre)
+        bolichito.ponerEnMostrador(munieco)
+        bolichito.ponerEnVidriera(placa)
+        assert.that(bolichito.esBrillante())
+    }
+
+    test "Bolichito: Puede mejorar (Desequilibrado o Monocromático)" {
+        // Actual: Desequilibrado (800 no es mayor a 1300), no es monocromático.
+        // Como está desequilibrado, puede mejorar.
+        assert.that(bolichito.puedeMejorar())
+        
+        // Lo arreglamos para que esté equilibrado y NO monocromático
+        bolichito.ponerEnMostrador(biblioteca) // verde, 8000
+        bolichito.ponerEnVidriera(remera)      // rojo, 800
+        assert.notThat(bolichito.puedeMejorar()) // Está perfecto
+    }
+
+    test "Bolichito: Puede ofrecerle algo a una persona" {
+        // En mostrador: remera (rojo, lino, 800). En vidriera: pelota (pardo, cuero, 1300).
+        
+        // A Estefanía le gusta la remera (rojo)
+        assert.that(bolichito.puedeOfrecerleAlgoA(estefania))
+        
+        // A Juan le gusta la pelota (pardo y 1300g)
+        assert.that(bolichito.puedeOfrecerleAlgoA(juan))
+        
+        // A Luisa no le gusta ninguno (ni lino ni cuero brillan)
+        assert.notThat(bolichito.puedeOfrecerleAlgoA(luisa))
+    }
+}

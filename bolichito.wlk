@@ -18,7 +18,7 @@ object bolichito{
     }
 
     method esBrillante(){
-        return objetoEnMostrador.material().esDeMaterialQueBrilla() && objetoEnVidriera.material().esDeMaterialQueBrilla()
+        return (objetoEnMostrador.material().esDeMaterialQueBrilla() && objetoEnVidriera.material().esDeMaterialQueBrilla())
     }
 
     method esMonocromatico(){

@@ -16,68 +16,74 @@ una placa de cobre, de peso y color variables.
 /// OBJETOS
 
 object remera{
-    method peso() { 800 }
-    method color() { rojo}
-    method material() {lino}
+    method peso() = 800 
+    method color() = rojo
+    method material()  = lino
 }
 
 object pelota{
-    method peso() {1300}
-    method color() {pardo}
-    method material() {cuero}
+    method peso() = 1300
+    method color() = pardo
+    method material() = cuero
 }
 
-object bibloteca{
-    method peso() {8000}
-    method color() {verde}
-    method material() {madera}
+object biblioteca{
+    method peso() = 8000
+    method color() = verde
+    method material() = madera
 }
 
 object munieco{
     var peso = 0
-    method cambiarPeso(nuevoPeso) { peso = nuevoPeso}
+    method cambiarPeso(nuevoPeso){
+        peso = nuevoPeso
+    }
     method peso() {
         return peso
     }
-    method color() {celeste}
-    method material() {vidrio}
+    method color() = celeste
+    method material() = vidrio
 }
 
 object placa{
     var peso = 0
     var color = verde
-    method cambiarPeso(nuevoPeso) {peso = nuevoPeso}
+    method cambiarPeso(nuevoPeso){
+        peso = nuevoPeso}
     method peso(){
         return peso
     }
-    method cambiarColor(nuevoColor) {color = nuevoColor}
+    method cambiarColor(nuevoColor){
+        color = nuevoColor}
     method color() {
         return color
     }
-    method material() {cobre}
+    method material() = cobre
 }
 
 object arito {
-    method peso() {180}
-    method color() {celeste}
-    method material() {cobre}
+    method peso() = 180
+    method color() = celeste
+    method material() = cobre
 }
 
 object banquito {
     var color = naranja
-    method peso() {1700}
+    method peso() = 1700
     method color(){
         return color
     }
-    method material() {madera}
-    method cambiarColor(nuevoColor) {color = nuevoColor}
+    method material() = madera
+    method cambiarColor(nuevoColor){
+        color = nuevoColor}
 
 }
 
 object cajita {
     var objetoAdentro = arito 
     
-    method guardarAdentro(objeto) { objetoAdentro = objeto }
+    method guardarAdentro(objeto){
+        objetoAdentro = objeto }
     method peso() = 400 + objetoAdentro.peso() 
     method color() = rojo
     method material() = cobre
