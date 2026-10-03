@@ -5,6 +5,11 @@ object bolichito{
     var objetoEnMostrador = remera
     var objetoEnVidriera = arito
 
+    method objetoEnMostrador() = objetoEnMostrador
+    method objetoEnVidriera() = objetoEnVidriera
+
+
+
     method ponerEnMostrador(objetoNuevo){
         objetoEnMostrador = objetoNuevo
     }
@@ -13,7 +18,7 @@ object bolichito{
     }
 
     method esBrillante(){
-        return objetoEnMostrador.esDeMaterialQueBrilla() && objetoEnVidriera.esDeMaterialQueBrilla()
+        return objetoEnMostrador.material().esDeMaterialQueBrilla() && objetoEnVidriera.material().esDeMaterialQueBrilla()
     }
 
     method esMonocromatico(){
@@ -29,9 +34,9 @@ object bolichito{
     }
 
     method puedeMejorar(){
-        return ( self.esMonocromatico() || self.estaEquilibrado() )
+        return ( self.esMonocromatico() || !self.estaEquilibrado() )
     }
     method puedeOfrecerleAlgoA(objetoPersona){
-        return (objetoPersona.leGusta(objetoEnMostrador || objetoEnVidriera))
+        return objetoPersona.leGusta(objetoEnMostrador) || objetoPersona.leGusta(objetoEnVidriera) 
     }
 }

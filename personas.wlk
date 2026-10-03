@@ -13,24 +13,24 @@ Juan: le gustan las cosas que, o bien son de un color que no es fuerte, o bien p
 
 object rosa {
     method leGusta(objeto){
-        return objeto.peso() > 2000
+        return objeto.peso() <= 2000
     }
 }
 
 object juan {
     method leGusta(objeto){
-        return !objeto.esDeMaterialQueBrilla() || (objeto.peso() > 1200 && objeto.peso() < 1800)
+        return !objeto.material().esDeMaterialQueBrilla() || objeto.peso().between(1200, 1800)
     }    
 }
 
 object luisa {
     method leGusta(objeto){
-        return objeto.esDeMaterialQueBrilla()
+        return objeto.material().esDeMaterialQueBrilla()
     }
 }
 
 object estefania {
     method leGusta(objeto){
-        return objeto.esDeColorFuerte()
+        return objeto.color().esDeColorFuerte()
     }
 }
