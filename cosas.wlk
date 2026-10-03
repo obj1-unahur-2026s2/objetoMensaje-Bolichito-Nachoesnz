@@ -119,31 +119,31 @@ object naranja{
 /// MATERIALES
 
 object cobre{
-    method esBrillante(){
+    method esDeMaterialQueBrilla(){
         return true
     }   
 }
 
 object vidrio{
-    method esBrillante(){
+    method esDeMaterialQueBrilla(){
         return true
     }   
 }
 
 object lino{
-    method esBrillante(){
+    method esDeMaterialQueBrilla(){
         return false
     }   
 }
 
 object madera{
-    method esBrillante(){
+    method esDeMaterialQueBrilla(){
         return false
     }   
 }
 
 object cuero{
-    method esBrillante(){
+    method esDeMaterialQueBrilla(){
         return false
     }   
 }

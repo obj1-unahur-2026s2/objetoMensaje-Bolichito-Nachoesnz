@@ -19,13 +19,13 @@ object rosa {
 
 object juan {
     method leGusta(objeto){
-        return !objeto.esBrillante() || (objeto.peso() > 1200 && objeto.peso() < 1800)
+        return !objeto.esDeMaterialQueBrilla() || (objeto.peso() > 1200 && objeto.peso() < 1800)
     }    
 }
 
 object luisa {
     method leGusta(objeto){
-        return objeto.esBrillante()
+        return objeto.esDeMaterialQueBrilla()
     }
 }
 
