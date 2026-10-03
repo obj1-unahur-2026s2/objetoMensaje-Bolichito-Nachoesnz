@@ -78,11 +78,6 @@ object cajita {
     method peso() {400 + pesoObjetoInterior}
 }
 
-
-
-
-
-
 /// COLORES ///
 
 object rojo{
