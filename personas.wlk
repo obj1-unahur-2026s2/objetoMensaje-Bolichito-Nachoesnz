@@ -12,35 +12,25 @@ Juan: le gustan las cosas que, o bien son de un color que no es fuerte, o bien p
 
 
 object rosa {
-
     method leGusta(objeto){
         return objeto.peso() > 2000
     }
-
-
-
 }
 
 object juan {
-
-    
-
-
-
+    method leGusta(objeto){
+        return !objeto.esBrillante() || (objeto.peso() > 1200 && objeto.peso() < 1800)
+    }    
 }
 
 object luisa {
-
-    
-
-
-
+    method leGusta(objeto){
+        return objeto.esBrillante()
+    }
 }
 
 object estefania {
-
-    
-
-
-
+    method leGusta(objeto){
+        return objeto.esDeColorFuerte()
+    }
 }
